@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Мій сайт", page_icon="🐬", layout="wide")
 
-st.title("Ласкаво просимо до мого сайту!")
+st.title("Ласкаво прошу до мого сайту!")
 
 tab1, tab2, tab3 = st.tabs(["Вкладка один", "Вкладка два", "Корисні посилання"])
 
