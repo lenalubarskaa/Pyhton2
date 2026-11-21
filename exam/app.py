@@ -43,8 +43,6 @@ if st.button("🔍 Знайти рецепт", use_container_width=True):
 
                 recipe, finish_reason = generate_recipe(products, category)
 
-                st.write("Причина завершення:", finish_reason)
-
                 st.success("🎉 Рецепт готовий! Смачного!")
 
                 st.subheader("Твій рецепт:")

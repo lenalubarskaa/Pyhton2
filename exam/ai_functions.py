@@ -1,4 +1,3 @@
-
 import requests
 import os
 from dotenv import load_dotenv
@@ -17,10 +16,8 @@ def generate_recipe(products, category):
     if not OPENROUTER_API_KEY:
         raise Exception("Не знайдено API-ключ!")
 
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {OPENROUTER_API_KEY}",
+               "Content-Type": "application/json"}
 
     prompt = f"""
     Ти розумний помічник із приготування їжі.
@@ -65,23 +62,14 @@ def generate_recipe(products, category):
 - Перевіряй правильність української мови та не повторюй слова помилково.
     """
 
-    data = {
-        "model": MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
-        "max_tokens": 2500,
-        "reasoning": {
-            "effort": "low"
-        }
-    }
+    data = {"model": MODEL,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 4000}
 
-    response = requests.post(
-        API_URL,
-        headers=headers,
-        json=data,
-        timeout=60
-    )
+    response = requests.post(API_URL,
+                            headers=headers,
+                            json=data,
+                            timeout=60)                   
 
     response.raise_for_status()
 
@@ -103,10 +91,7 @@ if __name__ == "__main__":
     try:
         print("Перевірка створення рецепта...")
 
-        test_recipe = generate_recipe(
-            "яйця, молоко, борошно",
-            "Сніданок"
-        )
+        test_recipe = generate_recipe("яйця, молоко, борошно","Сніданок")
 
         print("\nРезультат:")
         print(test_recipe)
