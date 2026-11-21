@@ -1,10 +1,14 @@
 import requests
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+if not OPENROUTER_API_KEY:
+    OPENROUTER_API_KEY = st.secrets.get("OPENROUTER_API_KEY", "")
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
