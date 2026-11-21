@@ -1,14 +1,10 @@
 import requests
 import os
-import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-
-if not OPENROUTER_API_KEY:
-    OPENROUTER_API_KEY = st.secrets.get("OPENROUTER_API_KEY", "")
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
@@ -88,17 +84,3 @@ def generate_recipe(products, category):
         raise Exception("Модель не повернула текст. Причина: " + str(finish_reason))
 
     return recipe, finish_reason
-
-
-if __name__ == "__main__":
-
-    try:
-        print("Перевірка створення рецепта...")
-
-        test_recipe = generate_recipe("яйця, молоко, борошно","Сніданок")
-
-        print("\nРезультат:")
-        print(test_recipe)
-
-    except Exception as error:
-        print("Помилка:", error)
